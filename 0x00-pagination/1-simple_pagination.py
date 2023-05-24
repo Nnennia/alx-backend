@@ -33,13 +33,13 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            """Get requested page"""
-            assert isinstance(page, int) and isinstance(page_size, int)
-            assert page > 0 and page_size > 0
-            try:
-                page_indexes = index_range(page, page_size)
-                start, stop = page_indexes
-                all_data = self.dataset()
-                return all_data[start: stop]
-            except Exception as e:
-                raise e
+        """Get requested page"""
+        assert isinstance(page, int) and isinstance(page_size, int)
+        assert page > 0 and page_size > 0
+        try:
+            page_indexes = index_range(page, page_size)
+            start, stop = page_indexes
+            all_data = self.dataset()
+            return all_data[start: stop]
+        except Exception as e:
+            raise e
