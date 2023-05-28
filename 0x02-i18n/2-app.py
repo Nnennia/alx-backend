@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """"Function with the babel.localselector"""
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, _
 
 
 class Config(object):
+    """"Configure class that handles the languages"""
     LANGUAGES = ['en', 'fr']
+    BABEL_DEFAULT_LOCALE = "en"
 
 
 app = Flask(__name__)
