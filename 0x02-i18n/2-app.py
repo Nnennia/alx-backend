@@ -1,35 +1,33 @@
 #!/usr/bin/env python3
-""" Task-1 Flask-Babel """
+""" Basic Babel Setup """
 from flask import Flask, render_template, request
+from typing import Any
 from flask_babel import Babel
 
-app = Flask(__name__)
-babel = Babel(app)
 
-
-class Config:
-    """ Babel config
-    """
+class Config(object):
+    """ Language config """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
+app = Flask(__name__)
 app.config.from_object(Config)
-
-
-@app.route('/')
-def index():
-    """ index function
-    """
-    return render_template('2-index.html')
+babel = Babel(app)
 
 
 @babel.localeselector
 def get_locale():
-    """Get locale function"""
+    """ returns locale lang """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/')
+def index() -> Any:
+    """ renders templates """
+    return (render_template('2-index.html'))
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""Set up a basic flask app"""
+""" Basic Flask App """
 from flask import Flask, render_template
+from typing import Any
+
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def index() -> str:
-    """Index function"""
-    return render_template("0-index.html")
+@app.route('/')
+def index() -> Any:
+    """ renders templates """
+    return (render_template('0-index.html'))
 
 
 if __name__ == "__main__":
-    app.run(port="5000", host="0.0.0.0", debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
